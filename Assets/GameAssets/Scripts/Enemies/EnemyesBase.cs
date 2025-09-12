@@ -15,9 +15,13 @@ namespace Enemy
         public Flashcolor Flashcolor;
         public ParticleSystem ParticleSystem;
         public float DeathDuration = 1f;
+        public bool lookAtPlayer = false;
+
+
 
         [SerializeField] private AnimationBase _animationBase;
         [SerializeField] private float _currentLife;
+        private PlayerControllerTurning _player;
 
         [Header("Animation")]
         public float startAnimationDuration = 0.2f;
@@ -27,6 +31,11 @@ namespace Enemy
         private void Awake()
         {
             Init();
+        }
+
+        private void Start()
+        {
+            _player = GameObject.FindObjectOfType<PlayerControllerTurning>();
         }
 
         protected void ResetLife()
@@ -58,6 +67,8 @@ namespace Enemy
             if (ParticleSystem != null) ParticleSystem.Emit(15);
             _currentLife -= f;
 
+            //transform.position -= transform.forward;
+
             if (_currentLife <= 0) 
             {
                 Kill();
@@ -80,16 +91,24 @@ namespace Enemy
 
         //debug
 
-        private void Update()
-        {
-            
-        }
+        //private void Update() {  }
 
         public void Damage(float damage)
         {
             Debug.Log("Damage");
             OnDamage(damage);
         }
+
+        public virtual void Update()
+        {
+
+            if (lookAtPlayer)
+            {
+                transform.LookAt(_player.transform.position);
+            }
+
+        }
+
     }
 
 }

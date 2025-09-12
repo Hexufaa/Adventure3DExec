@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerTurning : MonoBehaviour
+public class PlayerControllerTurning : MonoBehaviour, IDamageable
 {
     public CharacterController characterController; public float speed = 1f;
 
@@ -50,5 +50,10 @@ public class PlayerControllerTurning : MonoBehaviour
         { 
             animator.SetBool("Run", false);
         }*/
+    }
+
+    public void Damage(float damage)
+    {
+        throw new System.NotImplementedException();
     }
 }
