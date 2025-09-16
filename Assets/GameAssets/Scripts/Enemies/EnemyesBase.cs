@@ -99,6 +99,15 @@ namespace Enemy
             OnDamage(damage);
         }
 
+        private void OnCollisionEnter(Collision collision)
+        {
+            PlayerControllerTurning p = collision.transform.GetComponent<PlayerControllerTurning>();
+            if (p != null)
+            {
+                p.healthBase.Damage(1);
+            }
+        }
+
         public virtual void Update()
         {
 

@@ -23,17 +23,24 @@ public class ProjectileBase : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-
         foreach (var i in tagsToHit) 
-        {
-            
-            if(collision.transform.tag == i)
+        { 
+            if(collision.transform.tag == i) 
             {
-
                 var damageable = collision.transform.GetComponent<IDamageable>();
-                if(damageable != null) damageable.Damage(damageAmount);
+                if (damageable != null) 
+                {
+                //damageable.Damage(damageAmount);
+                
+                    Vector3 dir = collision.transform.position - transform.position;
+                    dir = -dir.normalized;
+                    dir.y = 0;
+
+                    damageable.Damage(damageAmount);
+                }
 
                 break;
+            
             }
         }
 

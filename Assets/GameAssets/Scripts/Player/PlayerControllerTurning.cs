@@ -2,21 +2,84 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerControllerTurning : MonoBehaviour, IDamageable
+public class PlayerControllerTurning : MonoBehaviour//, IDamageable
 {
     public CharacterController characterController; public float speed = 1f;
 
+
+    public List<Collider> Colliders;
     public float turnSpeed = 1f;
     public float gravity = -9.8f;
     private float vSpeed = 0f;
     public float jumpSpeed = 15f;
 
+    public Animator animator;
+
+    
     [Header("Run Setup")]
     public KeyCode keyRun = KeyCode.LeftShift;
     public float speedRun = 1.5f;
 
-    public Animator animator;
 
+    [Header("Life")]
+    public HealthBase healthBase;
+
+
+    private bool _alive = true;
+
+    private void OnValidate()
+    {
+        if (healthBase == null) healthBase = GetComponent<HealthBase>();
+    }
+
+    private void Awake()
+    {
+        OnValidate();
+        healthBase.OnDamage += Damage;
+        healthBase.OnKill += OnKill;
+
+    }
+
+    #region LIFE
+
+    private void Revive()
+    {
+        _alive = true;
+        healthBase.ResetLife();
+        animator.SetTrigger("Revive");
+        Invoke(nameof(TurnOnColliders), 0.1f);
+        Respawn();
+
+    }
+    private void TurnOnColliders()
+    {
+        Colliders.ForEach(i => i.enabled = true);
+    }
+
+    private void OnKill(HealthBase h)
+    {
+        if (_alive)
+        {
+            _alive = false;
+            animator.SetTrigger("Death");
+            Colliders.ForEach(i => i.enabled = false);
+
+            Invoke(nameof(Revive), 1f);
+        }
+    }
+
+    private void Damage(HealthBase h)
+    {
+        //Damage(h);
+    }
+
+    public void Damage(float damage)
+    {
+        //Damage(damage);
+        //throw new System.NotImplementedException();
+    }
+    #endregion
+  
     void Update() 
     {
         transform.Rotate(0, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime, 0);
@@ -52,8 +115,12 @@ public class PlayerControllerTurning : MonoBehaviour, IDamageable
         }*/
     }
 
-    public void Damage(float damage)
+    [NaughtyAttributes.Button]
+    public void Respawn()
     {
-        throw new System.NotImplementedException();
+        if (CheckPointManager.Instance.HasCheckPoint()) 
+        {
+            transform.position = CheckPointManager.Instance.GetPositionFromLastCheckPoint();
+        }
     }
 }
