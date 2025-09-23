@@ -6,12 +6,12 @@ public class PlayerControllerTurning : MonoBehaviour//, IDamageable
 {
     public CharacterController characterController; public float speed = 1f;
 
-
+    [Header("player Status")]
     public List<Collider> Colliders;
     public float turnSpeed = 1f;
     public float gravity = -9.8f;
-    private float vSpeed = 0f;
     public float jumpSpeed = 15f;
+    private float _Speed = 0f;
 
     public Animator animator;
 
@@ -71,10 +71,12 @@ public class PlayerControllerTurning : MonoBehaviour//, IDamageable
     private void Damage(HealthBase h)
     {
         //Damage(h);
+        ShakeCamera.Instance.Shake();
     }
 
     public void Damage(float damage)
     {
+
         //Damage(damage);
         //throw new System.NotImplementedException();
     }
@@ -86,7 +88,7 @@ public class PlayerControllerTurning : MonoBehaviour//, IDamageable
         var inputAxisVertical = Input.GetAxis("Vertical");
         var speedVector = transform.forward * inputAxisVertical * speed;
 
-        if (characterController.isGrounded) { vSpeed = 0; if (Input.GetKeyDown(KeyCode.Space)) { vSpeed = jumpSpeed; } }
+        if (characterController.isGrounded) { _Speed = 0; if (Input.GetKeyDown(KeyCode.Space)) { _Speed = jumpSpeed; } }
 
         var isWalking = inputAxisVertical != 0;
         if (isWalking) 
@@ -100,8 +102,8 @@ public class PlayerControllerTurning : MonoBehaviour//, IDamageable
             } 
         }
 
-        vSpeed -= gravity * Time.deltaTime;
-        speedVector.y = vSpeed;
+        _Speed -= gravity * Time.deltaTime;
+        speedVector.y = _Speed;
         characterController.Move(speedVector * Time.deltaTime);
 
         animator.SetBool("Run", inputAxisVertical != 0);
