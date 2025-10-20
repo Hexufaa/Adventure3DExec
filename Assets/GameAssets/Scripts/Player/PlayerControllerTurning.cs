@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Ebac.Singleton;
 
-public class PlayerControllerTurning : MonoBehaviour//, IDamageable
+public class PlayerControllerTurning : Singleton<PlayerControllerTurning> //, IDamageable
 {
     public CharacterController characterController; public float speed = 1f;
 
@@ -32,7 +33,8 @@ public class PlayerControllerTurning : MonoBehaviour//, IDamageable
         if (healthBase == null) healthBase = GetComponent<HealthBase>();
     }
 
-    private void Awake()
+    //aula 5 usando inventarios, usando awake
+    private void Start()
     {
         OnValidate();
         healthBase.OnDamage += Damage;
