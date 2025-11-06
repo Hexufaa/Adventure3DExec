@@ -1593,7 +1593,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1ac3381af113ac42888f46186247cf6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startLife: 100
+  startLife: 3
   destroyOnKill: 1
   DeathDuration: 1.5
   uiUpdater: []
@@ -1607,7 +1607,7 @@ Transform:
   m_GameObject: {fileID: 552659346}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 39.61316, y: -3.5078316, z: 25.859291}
+  m_LocalPosition: {x: 58.93, y: -3.5078316, z: 44.99}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -3301,7 +3301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1206685402}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.0000000035202976, y: 0.9856446, z: -0.16883372, w: -0.000000020551356}
+  m_LocalRotation: {x: -0.0000000027347458, y: 0.9856446, z: -0.16883373, w: -0.000000015965334}
   m_LocalPosition: {x: 40.66, y: 0.19000006, z: 83.119995}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3680,7 +3680,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1335928058}
-  - component: {fileID: 1335928057}
   m_Layer: 0
   m_Name: StateMachine
   m_TagString: Untagged
@@ -3688,18 +3687,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1335928057
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335928056}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7f530defefc467479490415ab2d6a62, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1335928058
 Transform:
   m_ObjectHideFlags: 0
@@ -4238,7 +4225,7 @@ Transform:
   m_GameObject: {fileID: 1410637666}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -1, y: 1, z: 2.5}
+  m_LocalPosition: {x: -1, y: 1, z: 12.74}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -4458,7 +4445,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1502074410}
-  - component: {fileID: 1502074409}
   m_Layer: 0
   m_Name: gunChange
   m_TagString: Untagged
@@ -4466,18 +4452,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1502074409
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1502074408}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f9a333d8afd17842bf646ce2ee1b1ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1502074410
 Transform:
   m_ObjectHideFlags: 0
@@ -5622,6 +5596,10 @@ PrefabInstance:
     - target: {fileID: 1755240290713932783, guid: c61c0ebfa2d1c27409e6ab957a50a1e4, type: 3}
       propertyPath: m_Name
       value: Enemy_02
+      objectReference: {fileID: 0}
+    - target: {fileID: 1755240290713932783, guid: c61c0ebfa2d1c27409e6ab957a50a1e4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3647893316446689219, guid: c61c0ebfa2d1c27409e6ab957a50a1e4, type: 3}
       propertyPath: CollisionModule.m_Planes.Array.data[0]
