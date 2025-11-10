@@ -13,7 +13,7 @@ namespace itens
 
         public string compareTag = "Player";
         public ParticleSystem ParticleSystem;
-        public float timeToHide = 0.3f;
+        public float timeToHide = 0.1f;
         public GameObject graphicItem;
 
         [Header("Sounds")]

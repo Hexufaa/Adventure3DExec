@@ -95,7 +95,7 @@ GameObject:
   - component: {fileID: 1777747000122577692}
   - component: {fileID: 6975628097625655414}
   - component: {fileID: 5583400698575336592}
-  - component: {fileID: -978312570361843817}
+  - component: {fileID: 7872897770834460024}
   m_Layer: 0
   m_Name: PFB_Coin_Physics
   m_TagString: Untagged
@@ -135,7 +135,7 @@ MonoBehaviour:
   Collider: {fileID: 6975628097625655414}
   compareTag: Player
   ParticleSystem: {fileID: 0}
-  timeToHide: 3
+  timeToHide: 0.01
   graphicItem: {fileID: 3011618162332995644}
   audioSource: {fileID: 0}
 --- !u!135 &6975628097625655414
@@ -155,9 +155,9 @@ SphereCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1.5
+  m_Radius: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!54 &5583400698575336592
 Rigidbody:
@@ -186,7 +186,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!135 &-978312570361843817
+--- !u!135 &7872897770834460024
 SphereCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
