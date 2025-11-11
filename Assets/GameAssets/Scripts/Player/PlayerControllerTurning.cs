@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Ebac.Singleton;
+using Cloth;
 
 public class PlayerControllerTurning : Singleton<PlayerControllerTurning> //, IDamageable
 {
@@ -25,6 +26,8 @@ public class PlayerControllerTurning : Singleton<PlayerControllerTurning> //, ID
     [Header("Life")]
     public HealthBase healthBase;
 
+    [Space]
+    [SerializeField] private ClothChanger _clothChanger;
 
     private bool _alive = true;
 
@@ -126,5 +129,30 @@ public class PlayerControllerTurning : Singleton<PlayerControllerTurning> //, ID
         {
             transform.position = CheckPointManager.Instance.GetPositionFromLastCheckPoint();
         }
+    }
+
+    public void ChangeSpeed(float speed, float duration)
+    {
+        StartCoroutine(ChangeSpeedCoroutine(speed, duration));
+    }
+
+    IEnumerator ChangeSpeedCoroutine(float localspeed, float duration)
+    {
+        var defaultspeed = speed;
+        speed = localspeed;
+        yield return new WaitForSeconds(duration);
+        speed = defaultspeed;
+    }
+    public void ChangeTexture(ClothSetup setup, float duration)
+    {
+        StartCoroutine(ChangeTextureCoroutine(setup, duration));
+    }
+
+    IEnumerator ChangeTextureCoroutine(ClothSetup setup, float duration)
+    {
+        _clothChanger.ChangeTexture(setup);
+        yield return new WaitForSeconds(duration);
+        _clothChanger.ResetTexture();
+
     }
 }
