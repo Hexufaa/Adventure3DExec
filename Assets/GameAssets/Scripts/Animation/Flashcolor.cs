@@ -10,6 +10,8 @@ public class Flashcolor : MonoBehaviour
 
     public MeshRenderer MeshRenderer;
 
+    public string colorParameter = "_EmissionColor";
+
     [Header("Setup")]
     public Color color = Color.red;
 
@@ -20,14 +22,14 @@ public class Flashcolor : MonoBehaviour
 
     private void Start()
     {
-        defaultColor = MeshRenderer.material.GetColor("_EmissionColor");
+        defaultColor = MeshRenderer.material.GetColor(colorParameter);
     }
 
     [NaughtyAttributes.Button]
     public void Flash()
     {
         if(!_currTween.IsActive())
-        MeshRenderer.material.DOColor(color, "_EmissionColor", duration).SetLoops(2, LoopType.Yoyo);
+        _currTween = MeshRenderer.material.DOColor(color, colorParameter, duration).SetLoops(2, LoopType.Yoyo);
     }
 
 

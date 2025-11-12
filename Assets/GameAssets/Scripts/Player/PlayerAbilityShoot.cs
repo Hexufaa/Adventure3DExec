@@ -7,6 +7,7 @@ public class PlayerAbilityShoot : PlayerAbilityBase
 {
     public List<GunBase> gunPrefabs;
     public List<UIFillUpdater> uiGunUpdater;
+    public Flashcolor flashcolor;
 
     public Transform gunPosition;
 
@@ -59,6 +60,7 @@ public class PlayerAbilityShoot : PlayerAbilityBase
     private void StartShoot()
     {
         _currentGun.StartShoot();
+        flashcolor?.Flash();
         Debug.Log("Start Shoot");
     }
 

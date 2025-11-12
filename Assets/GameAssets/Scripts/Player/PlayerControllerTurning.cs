@@ -30,6 +30,7 @@ public class PlayerControllerTurning : Singleton<PlayerControllerTurning> //, ID
     [SerializeField] private ClothChanger _clothChanger;
 
     private bool _alive = true;
+    private bool _jumping = false;
 
     private void OnValidate()
     {
@@ -93,7 +94,26 @@ public class PlayerControllerTurning : Singleton<PlayerControllerTurning> //, ID
         var inputAxisVertical = Input.GetAxis("Vertical");
         var speedVector = transform.forward * inputAxisVertical * speed;
 
-        if (characterController.isGrounded) { _Speed = 0; if (Input.GetKeyDown(KeyCode.Space)) { _Speed = jumpSpeed; } }
+        if (characterController.isGrounded) 
+        {
+            _Speed = 0;
+            if (Input.GetKeyDown(KeyCode.Space)) 
+            {
+                if (_jumping) 
+                {
+                    _jumping = false;
+                    animator.SetTrigger("Land");
+
+                }
+
+                _Speed = jumpSpeed;
+                if (!_jumping) 
+                {
+                    _jumping = true;
+                    animator.SetTrigger("Jump");
+                }
+            } 
+        }
 
         var isWalking = inputAxisVertical != 0;
         if (isWalking) 
