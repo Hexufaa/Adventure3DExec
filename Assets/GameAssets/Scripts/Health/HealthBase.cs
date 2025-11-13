@@ -21,7 +21,7 @@ public class HealthBase : MonoBehaviour, IDamageable
 
     public float damageMultiply = 1f;
 
-    [SerializeField] private float _currentLife;
+    [SerializeField] public float _currentLife;
 
 
     private void Awake()

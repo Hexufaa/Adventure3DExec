@@ -35,7 +35,7 @@ public class ShakeCamera : Singleton<ShakeCamera>
 
     private void Start()
     {
-        _channelPerlin = VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        //_channelPerlin = VirtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     private void Update()

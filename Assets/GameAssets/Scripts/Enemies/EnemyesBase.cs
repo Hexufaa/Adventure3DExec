@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using DG.Tweening;
 using UnityEngine;
 using Animation;
+using UnityEngine.Events;
 
 namespace Enemy 
 {
@@ -27,6 +28,10 @@ namespace Enemy
         public float startAnimationDuration = 0.2f;
         public Ease startAnimationDurationEase = Ease.OutBack;
         public bool startWithAnimation = true;
+
+        [Header("Event")]
+        public UnityEvent OnKillEvent;
+
 
         private void Awake()
         {
@@ -59,6 +64,7 @@ namespace Enemy
             if (Collider != null) { Collider.enabled = false; }
             Destroy(gameObject, DeathDuration);
             PlayAnimationByTrigger(AnimationType.DEATH);
+            OnKillEvent?.Invoke();
         }
 
         public void OnDamage(float f)
